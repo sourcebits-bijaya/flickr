@@ -1,0 +1,31 @@
+<h1> photos of a particular user</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th><%= link_to("Friends", edit_photo_path(@potus[0]["author_id"])) %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @potus.each do |photo| %>
+      <tr>
+        <td>
+        <%#= photo["description"].gsub("https://www.flickr.com", "localhost:3000").html_safe %>
+        <%= link_to(image_tag(photo["media"]["m"], :alt => "home image", :width => 500, :height => 500), photo_path(photo["author_id"])) %>
+
+        </td>
+      </tr>
+      <tr>
+        <td>
+        <%= photo["author"].gsub("nobody@flickr.com ", "").gsub("(", "").gsub(")", "") %>
+          
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Photo', new_photo_path %>
